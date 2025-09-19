@@ -7,6 +7,7 @@
   <p>商品名: <%= @product.name %></p>
   <p>説明: <%= @product.description %></p>
   <p>価格: <%= @product.price %>円</p>
+  <p>販売状況: <%= I18n.t("enums.product.status.#{@product.status}") %></p>
   
   <% if current_user&.admin_flg %>
       <%= link_to "編集", edit_product_path(@product) %>
@@ -18,7 +19,7 @@
       <%= form.submit 'カートに追加' %>
     <% end %>
      
-    <% else %>
+    <% elsif @product.status == 'on_sale' %>
 
     <%= form_with scope: :cart_item, url: cart_items_path do |form| %>
       <%= form.hidden_field :product_id, value: @product.id %>

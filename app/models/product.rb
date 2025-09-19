@@ -9,6 +9,8 @@ class Product < ApplicationRecord
   
   # Active Storage（商品画像）
   has_one_attached :photo
+  
+  enum :status, { on_sale: 0, sold_out: 1 }
 
   # 商品画像のサムネイルを生成
   def thumbnail
