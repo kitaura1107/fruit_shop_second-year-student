@@ -6,7 +6,11 @@ class ProductsController < ApplicationController
   end
   
   def index
-    @products = Product.all
+   # 検索オブジェクト作成
+   @q = Product.ransack params[:q]
+   # 検索条件に基づいた一覧取得
+   @products = @q.result
+
   end
   
   def show

@@ -11,6 +11,11 @@ class Product < ApplicationRecord
   has_one_attached :photo
   
   enum :status, { on_sale: 0, sold_out: 1 }
+  
+  # 検索（Ransack）
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name price]
+  end
 
   # 商品画像のサムネイルを生成
   def thumbnail

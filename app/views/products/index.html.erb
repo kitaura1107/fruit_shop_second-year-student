@@ -4,6 +4,17 @@
   <%= link_to "新規登録", new_product_path %>
 <% end %>
 
+<h2>検索欄</h2>
+<%= search_form_for @q do |f| %>
+  <p>商品名 : <%= f.text_field :name_cont %></p>
+  <p>価格 : <%= f.number_field :price_eq %></p>
+  <%= f.submit %>
+<% end %>
+
+<%= sort_link(@q, :name, '商品名') %>
+<%= sort_link(@q, :price, '価格') %>
+ <hr>
+
 <% @products.each do |product| %>
   <div>
     <% if product.photo.attached? %>
