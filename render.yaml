@@ -1,0 +1,21 @@
+databases:
+  - name:   # 編集 (Renderで作成したデータベース名)
+    databaseName: fruit_db_7ds4  # 編集 (Renderで作成したデータベースのところにあるInfo>Connections>Database)
+    user: kitaura  # 編集 (Renderで作成したデータベースのところにあるInfo>Connections>Username)
+    region: singapore
+
+services:
+  - type: web
+    name: fruit_shop_second-year-student  # 編集 (Renderで作成したWeb Serviceの名前)
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: fruit_db_7ds4   # 編集 (Renderで作成したデータベース名)
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
