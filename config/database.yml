@@ -26,16 +26,6 @@ test:
 production:
   primary:
     <<: *default
-    database: storage/production.sqlite3
-  cache:
-    <<: *default
-    database: storage/production_cache.sqlite3
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *default
-    database: storage/production_queue.sqlite3
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *default
-    database: storage/production_cable.sqlite3
-    migrations_paths: db/cable_migrate
+    adapter: postgresql  # PostgreSQLに変更
+    encoding: unicode  # エンコーディング設定 追加
+    pool: 5  # 接続数設定 追加
